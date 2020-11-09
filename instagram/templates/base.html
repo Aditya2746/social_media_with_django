@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instagram-Home</title>
+  <link rel="icon" href="{% static 'img\favico.ico'%}">
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bulma.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <link rel="stylesheet" href="{% static 'css/form_style.css'%}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body style="background:#d4cece;">
+
+  <!-- Navbar goes here -->
+
+  <nav class="navbar nav-color" role="navigation" aria-label="main navigation" style="width: 100%;">
+
+    <div class="navbar-brand">
+      <a href="/post">
+        <h1 class="logo" style="font-family: 'Cookie', cursive; font-size: 35px;padding: 10px;">#hasher</h1>
+      </a>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="container">
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="/post" class="navbar-item">
+            <i class="material-icons md-36" style="color: #c41c22">home&nbsp;</i>
+            Home
+          </a>
+
+          <a href="/explore" class="navbar-item">
+            <i class="material-icons md-36" style="color: #f24816">explore&nbsp;</i>
+            Explore
+          </a>
+
+          <!-- <a class="navbar-item">
+          <i class="material-icons md-36" style="color: #dd3524">notifications&nbsp;</i>
+          Notifications
+        </a> -->
+
+          <a href="/direct" class="navbar-item">
+            <i class="material-icons md-36" style="color: #6e4a75">inbox&nbsp;</i>
+            Inbox
+            {% if directs_count %}
+            <span class="badge">{{ directs_count }}</span>
+            {% endif %}
+          </a>
+
+          <a href="{% url 'profile' request.user%}" class="navbar-item">
+            <i class="material-icons md-36" style="color: #2458af">face&nbsp;</i>Profile: {{ request.user }}
+          </a>
+          <a class="navbar-item" href="{% url 'new_post' %}">
+            <i class="material-icons md-36" style="color: green">perm_media&nbsp;</i>New Post
+          </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Settings
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" style="color: gray;">
+                Change Password
+              </a>
+              <a class="navbar-item" style="color:  gray;">
+                Contact Us
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/user/logout" style="color: gray;">
+                Log Out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  </nav>
+
+  <!-- Navbar ends here -->
+  {% block banner %}{%endblock%}
+  <section class="section">
+    <div class="">
+      {% block content %}{%endblock%}
+      {% block pagination %}{%endblock%}
+    </div>
+  </section>
+  <script> document.addEventListener('DOMContentLoaded', () => {
+
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+
+          });
+        });
+      }
+
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+        var $notification = $delete.parentNode;
+
+        $delete.addEventListener('click', () => {
+          $notification.parentNode.removeChild($notification);
+        });
+      });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      let cardToggles = document.getElementsByClassName('card-toggle');
+      for (let i = 0; i < cardToggles.length; i++) {
+        cardToggles[i].addEventListener('click', e => {
+          e.currentTarget.parentElement.parentElement.childNodes[3].classList.toggle('is-hidden');
+        });
+      }
+    });
+
+  </script>
+</body>
+
+</html>

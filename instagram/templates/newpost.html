@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="columns is-moblie is-centered has-text-centered">
+    <div class="column is-three-fifths">
+      <div class="card" style="background: linear-gradient(135deg,#F58529,#FEDA77,#DD2A7B, #515BD4);">
+        <div class="card-content">
+          <form method="post" action="" enctype="multipart/form-data"role="form" class="col s12">
+            {% csrf_token %}
+            <h1 class="title is-1 logo" style="color: #fafafa;font-family: 'Cookie', cursive;">#hasher</h1>
+            <hr>  
+            <h3 class="subtitle is-3">New Post</h3>
+            <hr>
+            <div class="feild">
+              <p class="control has-icons-left">
+                <label class="label is-medium" style="color: #fafafa;">Select Image</label>
+                {{form.picture}} 
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <hr>
+            <div class="feild">
+              <p class="control has-icons-left">
+                <label class="label is-medium" style="color: #fafafa;">Caption</label>
+                {{form.caption}} 
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <hr>
+            <div class="feild">
+              <p class="control has-icons-left">
+                <label class="label is-medium" style="color: #fafafa;">Tags</label>
+                {{form.tags}} 
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <hr>
+            
+            <hr>
+            <div class="feild">
+              <p class="control">
+            <button type="submit" name="action" class="button is-primary"><i class="material-icons left">account_circle&nbsp;</i>Add</button>
+            </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

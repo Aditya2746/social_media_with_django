@@ -1,0 +1,88 @@
+	{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<body style="background:#efeded;">
+
+    <div class="container">
+        <div class="columns">
+            <div style="margin-top: 30px;" class="column is-3">
+                <nav style="overflow-y: scroll; height: 400px;" class="panel">
+                    <p class="panel-heading">
+                        Messages
+                    </p>
+                    <div class="panel-block">
+                        <a href="{% url 'usersearch' %}"><button class="button is-link is-outlined is-fullwidth">
+                            Search New Users
+                        </button></a>
+                    </div>
+                    {% for message in messages %}
+
+                    <a class="panel-block is-active">
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-64x64">
+          {% if message.user.profile.picture %}
+            <img src="{{ message.user.profile.picture.url }}" alt="Placeholder image">
+          {% else %}
+            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+          {% endif %}
+      </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+          <strong>{{ message.user.profile.first_name }} {{ message.user.profile.last_name }}</strong> <small>@{{ message.user.username }}</small>
+        </p>
+        <div class="content">
+        {% if message.unread %}
+        <p style="font-weight: bold; color: red;">
+          <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+        </p>
+        {% endif %}        
+      </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </nav>
+
+            </div>
+            {% for direct in directs %}
+            <div style="overflow-y: scroll; margin-top: 35px; height: 400px;"class="column is-9">
+                <div class="columns">
+                    <div class="column is-offset-7">
+                        <article style="width: 300px;" class="message is-info">
+                            <div class="message-body">
+                                <span>
+                                    <strong>{{ direct.sender.profile.first_name }} {{ direct.sender.profile.last_name }}</strong> <small>@{{ direct.sender.username }} </small> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong></span>
+                                </div>
+                                {{ direct.body }}
+                        </article>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <form role="form" method="POST" action="{% url 'send_direct' %}">
+  {% csrf_token %}
+        <div align="center" style="width: 100%;"class="field is-grouped ">
+  <p style="width: 75%;"class="control">
+    <input type="hidden" name="to_user" value="{{ active_direct }}">
+    <input class="input"style="border: 1px solid black" type="text" placeholder="Type Chat">
+  </p>
+  <p class="control">
+    <a class="button is-info">
+      Send
+    </a>
+  </p>
+</div>
+</form>
+    </div>
+{%endblock%}

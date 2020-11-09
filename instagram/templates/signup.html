@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+{%load static%}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instagram-Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bulma.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/form_style.css'%}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body style="background: #fafafa">
+
+  <section class="section">
+    <div class="">
+      <div class="columns is-moblie is-centered has-text-centered">
+        <div class="column is-three-fifths">
+          <div class="card" style="background: linear-gradient(135deg,#F58529,#FEDA77,#DD2A7B, #515BD4);">
+            <div class="card-content">
+              <form method="post" action="" role="form" class="col s12">
+                {% csrf_token %}
+                <h1 class="title is-1" style="color: #fafafa;font-family: 'Cookie', cursive;">Instagram</h1>
+                <hr>  
+                <h3 class="subtitle is-3">Create an account</h3>
+                <hr>
+                <div class="feild">
+                  <p class="control has-icons-left">
+                    <label class="label is-medium" style="color: #fafafa;">Username</label>
+                    {{form.username}} 
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <hr>
+                <div class="feild">
+                  <p class="control has-icons-left">
+                    <label class="label is-medium" style="color: #fafafa;">Your Email ID</label>
+                    {{form.email}} 
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <hr>
+                <div class="feild">
+                  <p class="control has-icons-left">
+                    <label class="label is-medium" style="color: #fafafa;">Password</label>
+                    {{form.password}} 
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <hr>
+                <div class="feild">
+                  <p class="control has-icons-left">
+                    <label class="label is-medium" style="color: #fafafa;">Confirm Your Password</label>                    {{form.confirm_password}} 
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <hr>
+                <div class="feild">
+                  <p class="control">
+                <button type="submit" name="action" class="button is-primary"><i class="material-icons left">account_circle&nbsp;</i>Create an
+                  account</button>
+                </p>
+                </div>
+                <hr>
+                <div class="">
+                  <div class="">
+                    <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

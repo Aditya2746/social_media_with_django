@@ -1,0 +1,21 @@
+/* .side-margin{
+    margin: 90px;
+} */
+.color{
+    background-color: #eeeeee;
+}
+.size{
+    font-size: 100px;
+}
+.nav-color{
+    background-color: #fafafa;
+}
+.logo{
+	color: gray;
+}
+.logo:hover{
+	/*background: -webkit-linear-gradient(135deg,#F58529,#FEDA77,#DD2A7B, #515BD4);*/
+	background: linear-gradient(to left,#F58529,#FEDA77,#DD2A7B, #515BD4);
+	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}

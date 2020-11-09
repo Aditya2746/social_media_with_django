@@ -1,0 +1,25 @@
+#id_username, #id_password, #id_email, #id_confirm_password, #id_url, #id_location, #id_first_name, #id_last_name, #id_profile_info{
+    width: 100%;
+    height: 35px !important;
+    font-size: 20px;
+    border: none;
+    padding-left: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+}
+#id_picture{
+  background-color:rgba(23, 140, 236, 0.667); /* Green */
+  border: 3px solid rgba(23, 140, 236, 0.667);
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;  
+}
+#id_username:hover, #id_password:hover, #id_email:hover, #id_confirm_password:hover{
+    box-shadow: 0 4px 8px 0 rgba(8, 83, 163, 0.744), 0 6px 20px 0  rgba(8, 83, 163, 0.744);
+}
+.margining{
+    margin-top: 10px;
+}
